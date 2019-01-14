@@ -7,5 +7,7 @@ request.get('https://sytantris.github.io/http-examples/future.jpg')
     })
     .on('response', function (response) {
         console.log('Response Status Code: ', response.statusMessage, response.headers['content-type']);
-    })
-    .pipe(fs.createWriteStream('./tmp/downloaded.html'));
+        console.log('Download starting...');
+    }).on('end', function (response) {
+        console.log('Download complete!');
+    }).pipe(fs.createWriteStream('./tmp/downloaded.html'));
